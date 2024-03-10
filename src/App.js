@@ -64,25 +64,25 @@ function Form({ onAddItems }) {
 	)
 }
 
-function PackingList({ items }) {
+function PackingList({ items, onDeleteItem }) {
 	return (
 		<div className='list'>
 			<ul>
 				{items.map(item => (
-					<Item item={item} key={item.id} />
+					<Item item={item} onDeleteItem={onDeleteItem} key={item.id} />
 				))}
 			</ul>
 		</div>
 	)
 }
 
-function Item({ item }) {
+function Item({ item, onDeleteItem }) {
 	return (
 		<li>
 			<span style={item.packed ? { textDecoration: 'line-through' } : {}}>
 				{item.quantity} {item.description}
 			</span>
-			<button>❌&times;</button>
+			<button onClick={() => onDeleteItem(item.id)}>❌&times;</button>
 		</li>
 	)
 }
